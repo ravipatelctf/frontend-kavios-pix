@@ -1,0 +1,52 @@
+// src/components/Header.jsx
+import { Link } from "react-router-dom";
+import { useAuthStatus } from "../hooks/useAuthStatus";
+
+export default function Header() {
+  const { loading, isAuthenticated, email } = useAuthStatus();
+
+  const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
+
+  const handleGoogleLogin = () => {
+    // Redirect to backend OAuth route
+    window.location.href = `${baseUrl}/auth/google`;
+  };
+
+  const handleLogout = async () => {
+    try {
+      // Call backend to clear JWT cookie
+      await fetch(`${baseUrl}/auth/logout`, {
+        method: "POST",
+        credentials: "include", // include cookie for clearing
+      });
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
+      // Clear local data and redirect
+      localStorage.removeItem("userEmail");
+      window.location.href = "/";
+    }
+  };
+
+  return (
+    <header>
+      <nav>
+        <Link to="/">Home</Link>
+        {" | "}
+        {loading ? (
+          <span>Checking auth...</span>
+        ) : isAuthenticated ? (
+          <>
+            <span style={{ marginLeft: "10px" }}>
+              {email ? `Hi, ${email}` : "Logged in"}
+            </span>
+            {" | "}
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <button onClick={handleGoogleLogin}>Login with Google</button>
+        )}
+      </nav>
+    </header>
+  );
+}
