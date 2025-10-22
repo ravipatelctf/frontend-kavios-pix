@@ -37,9 +37,6 @@ export default function Header() {
           <span>Checking auth...</span>
         ) : isAuthenticated ? (
           <>
-            <span style={{ marginLeft: "10px" }}>
-              {email ? `Hi, ${email}` : "Logged in"}
-            </span>
             {" | "}
             <button onClick={handleLogout}>Logout</button>
           </>
