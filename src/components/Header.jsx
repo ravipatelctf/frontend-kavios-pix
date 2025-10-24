@@ -30,14 +30,13 @@ export default function Header() {
 
   return (
     <header>
-      <nav>
+      <nav className="container py-3">
         <Link to="/">Home</Link>
         {" | "}
         {loading ? (
           <span>Checking auth...</span>
         ) : isAuthenticated ? (
           <>
-            {" | "}
             <button onClick={handleLogout}>Logout</button>
           </>
         ) : (

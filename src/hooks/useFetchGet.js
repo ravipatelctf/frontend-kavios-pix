@@ -32,9 +32,9 @@ export function useFetchGet(url) {
     }
   }
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, [url]);
+  useEffect(() => {
+    fetchData();
+  }, [url]);
 
   return { data, loading, error, fetchData };
 }
