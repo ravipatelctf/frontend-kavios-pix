@@ -29,18 +29,18 @@ export default function Header() {
   };
 
   return (
-    <header>
-      <nav className="container py-3">
-        <Link to="/">Home</Link>
-        {" | "}
+    <header className="nav">
+      <nav className="container py-3 navbar nav">
+        <Link to={"/"} className="nav-link">KaviosPix</Link>
+        <Link to={"/dashboard"} className="nav-link">Dashboard</Link>
         {loading ? (
-          <span>Checking auth...</span>
+          <span className="nav-link">Checking auth...</span>
         ) : isAuthenticated ? (
           <>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout} className="nav-link">Logout</button>
           </>
         ) : (
-          <button onClick={handleGoogleLogin}>Login with Google</button>
+          <button onClick={handleGoogleLogin} className="nav-link">Login with Google</button>
         )}
       </nav>
     </header>
