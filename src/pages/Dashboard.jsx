@@ -56,7 +56,7 @@ function CreateAlbum({setRefresh}) {
     if (!album["name"]) {
       return;
     }
-    // console.log("album:", album);
+    console.log("album:", album);
 
     try {
       await createAlbum(album);
