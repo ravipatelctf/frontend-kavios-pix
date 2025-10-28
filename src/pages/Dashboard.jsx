@@ -72,7 +72,7 @@ function CreateAlbum({setRefresh}) {
     <div>
       {/* Button trigger modal */}
       <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Create Album
+        + Create Album
       </button>
 
       {/* Modal */}

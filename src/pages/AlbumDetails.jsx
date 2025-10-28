@@ -3,6 +3,7 @@ import { useFetchGet } from "../hooks/useFetchGet.js";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function AlbumDetails() {
     const { albumId } = useParams();
@@ -23,7 +24,6 @@ export default function AlbumDetails() {
                     </ul>
                 </section>
                 <section className="py-4">
-                    <h2>Photos</h2>
                     <ImageManagement albumId={albumId} />
                 </section>
             </main>
@@ -75,9 +75,11 @@ function ImageUpload({setRefresh, albumId}) {
   return (
     <div>
       {/* Button trigger modal */}
-      <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Upload Image
-      </button>
+      <div className="d-flex justify-content-end">
+        <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          + Upload Image
+        </button>
+      </div>
 
       {/* Modal */}
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,7 +90,7 @@ function ImageUpload({setRefresh, albumId}) {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <input type="file" onChange={(e) => setImagePayload(pv => ({...pv, "image": e.target.files[0]}))} ref={fileInputRef} required/>
+              <input type="file" onChange={(e) => setImagePayload(pv => ({...pv, "image": e.target.files[0]}))} ref={fileInputRef} className="mb-1" required/>
               <input type="text" onChange={(e) => setImagePayload(pv => ({...pv, "imageName": e.target.value}))} placeholder="Image Name" required/>
             </div>
             <div className="modal-footer">
@@ -115,7 +117,6 @@ function ImageManagement({ albumId }) {
     <>
       <main>
         <section className="mb-4">
-            <h1>Image Uploader</h1>
             <ImageUpload setRefresh={setRefresh} albumId={albumId} />
         </section>
         <section>
@@ -123,9 +124,11 @@ function ImageManagement({ albumId }) {
                 {
                     data ? data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(image => (
                         <div key={image._id} className="col-md-6">
+                            <Link to={`/albums/${albumId}/images/${image._id}`} className="text-decoration-none">
                             <div className="card mb-4">
                                 <img src={`${image.imageUrl}`} alt="test image" className="img-fluid"/>
                             </div>
+                            </Link>
                         </div>
                     )) : (
                         <p>Loading...</p>

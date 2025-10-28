@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import AlbumDetails from "./pages/AlbumDetails";
 
 import { ToastContainer } from "react-toastify";
+import ImageDetails from "./pages/ImageDetails";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/albums/:albumId" element={<AlbumDetails />} />
+        <Route path="/albums/:albumId/images/:imageId" element={<ImageDetails />}/>
       </Routes>
     </Router>
     <ToastContainer autoClose={3000} position="top-center" />
