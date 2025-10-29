@@ -59,7 +59,8 @@ function ImageUpload({setRefresh, albumId}) {
             {
                 headers: {
                 "Content-Type": "multipart/form-data",
-                }
+                },
+                withCredentials: true
             });
             
             toast.info("Image Uploaded Successfully.")

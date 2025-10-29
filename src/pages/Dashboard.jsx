@@ -127,7 +127,6 @@ export default function Dashboard() {
       ) : (
         <p>Redirecting to login...</p>
       )}
-      <AlbumManagement />
     </main>
   );
 }
