@@ -101,22 +101,22 @@ function CreateAlbum({setRefresh}) {
 }
 
 export default function Dashboard() {
-  // const navigate = useNavigate();
-  // const { loading, isAuthenticated, email } = useAuthStatus();
+  const navigate = useNavigate();
+  const { loading, isAuthenticated, email } = useAuthStatus();
 
-  // // Redirect if not authenticated
-  // useEffect(() => {
-  //   if (!loading && !isAuthenticated) {
-  //     navigate("/");
-  //   }
-  // }, [loading, isAuthenticated, navigate]);
+  // Redirect if not authenticated
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      navigate("/");
+    }
+  }, [loading, isAuthenticated, navigate]);
 
-  // if (loading) return <p>Checking authentication...</p>;
+  if (loading) return <p>Checking authentication...</p>;
 
   return (
     <main className="container">
       <h2>Dashboard page</h2>
-      {/* {isAuthenticated ? (
+      {isAuthenticated ? (
         <>
           <h1>Login Successful</h1>
           <p>Welcome, {email || "User"}</p>
@@ -126,7 +126,7 @@ export default function Dashboard() {
         </>
       ) : (
         <p>Redirecting to login...</p>
-      )} */}
+      )}
       <AlbumManagement />
     </main>
   );
