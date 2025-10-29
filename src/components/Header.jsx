@@ -32,7 +32,9 @@ export default function Header() {
     <header className="nav">
       <nav className="container py-3 navbar nav">
         <Link to={"/"} className="nav-link">KaviosPix</Link>
-        <Link to={"/dashboard"} className="nav-link">Dashboard</Link>
+        <Link to={"/albums"} className="nav-link">Albums</Link>
+        <Link to={"/images"} className="nav-link">Images</Link>
+        <Link to={"/images/favorites"} className="nav-link">Favorites</Link>
         {loading ? (
           <span className="nav-link">Checking auth...</span>
         ) : isAuthenticated ? (
