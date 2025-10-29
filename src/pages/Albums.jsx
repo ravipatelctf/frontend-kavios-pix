@@ -100,7 +100,7 @@ function CreateAlbum({setRefresh}) {
   );
 }
 
-export default function Dashboard() {
+export default function Albums() {
   const navigate = useNavigate();
   const { loading, isAuthenticated, email } = useAuthStatus();
 
@@ -115,10 +115,8 @@ export default function Dashboard() {
 
   return (
     <main className="container">
-      <h2>Dashboard page</h2>
       {isAuthenticated ? (
         <>
-          <h1>Login Successful</h1>
           <p>Welcome, {email || "User"}</p>
           <div>
             <AlbumManagement />
