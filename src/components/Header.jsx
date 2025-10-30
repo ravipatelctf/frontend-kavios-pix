@@ -34,7 +34,7 @@ export default function Header() {
         <Link to={"/"} className="nav-link">KaviosPix</Link>
         <Link to={"/albums"} className="nav-link">Albums</Link>
         <Link to={"/images"} className="nav-link">Images</Link>
-        <Link to={"/images/favorites"} className="nav-link">Favorites</Link>
+        <Link to={"/images/favorites"} className="nav-link">Favourites</Link>
         {loading ? (
           <span className="nav-link">Checking auth...</span>
         ) : isAuthenticated ? (
