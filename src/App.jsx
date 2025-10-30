@@ -32,7 +32,7 @@ export default function App() {
         <Route path="/images/favorites" element={<FavoriteImages />} />
       </Routes>
     </Router>
-    <ToastContainer autoClose={3000} position="top-center" />
+    <ToastContainer autoClose={2000} position="top-center" />
     </div>
   );
 }

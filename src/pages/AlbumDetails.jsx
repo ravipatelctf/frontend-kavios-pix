@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { ImageCard } from "../components/ImageCard.jsx";
 
 export default function AlbumDetails() {
     const { albumId } = useParams();
@@ -126,9 +127,7 @@ function ImageManagement({ albumId }) {
                     data ? data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(image => (
                         <div key={image._id} className="col-md-6">
                             <Link to={`/albums/${albumId}/images/${image._id}`} className="text-decoration-none">
-                            <div className="card mb-4">
-                                <img src={`${image.imageUrl}`} alt="test image" className="img-fluid"/>
-                            </div>
+                              <ImageCard image={image} setRefresh={setRefresh}/>
                             </Link>
                         </div>
                     )) : (

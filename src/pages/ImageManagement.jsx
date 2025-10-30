@@ -1,43 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStatus } from "../hooks/useAuthStatus";
 import { useFetchGet } from "../hooks/useFetchGet";
+import { ImageCard } from "../components/ImageCard";
 
 export function ImageManagement() {
+    const [refresh, setRefresh] = useState(0);
     const navigate = useNavigate();
     const { loading, isAuthenticated } = useAuthStatus();
-    const { data: images } = useFetchGet(`${import.meta.env.VITE_SERVER_BASE_URL}/images`);
+    const { data: images, fetchData } = useFetchGet(`${import.meta.env.VITE_SERVER_BASE_URL}/images`);
 
     // Redirect if not authenticated
     useEffect(() => {
-    if (!loading && !isAuthenticated) {
-        navigate("/");
-    }
+        if (!loading && !isAuthenticated) {
+            navigate("/");
+        }
     }, [loading, isAuthenticated, navigate]);
+
+    useEffect(() => {
+        fetchData();
+    }, [refresh]);
 
     if (loading) return <p className="text-center">Checking authentication...</p>;
     return (
         <>
-            <main>
+            <main className="container">
                 <div className="row py-4">
                     {
                         images?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(image => (
-                            <ImageCard key={image._id} image={image} />
+                            <div key={image._id} className="col-md-6">
+                                <ImageCard image={image} setRefresh={setRefresh} />
+                            </div>
                         ))
                     }
                 </div>
             </main>
         </>
-    );
-}
-
-
-function ImageCard({ image }) {
-    return (
-        <div className="col-md-6">
-            <div className="card">
-                <img src={`${image?.imageUrl}`} alt={`${image?.imageName}`} />
-            </div>
-        </div>
     );
 }
