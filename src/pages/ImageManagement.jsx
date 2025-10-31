@@ -23,18 +23,27 @@ export function ImageManagement() {
 
     if (loading) return <p className="text-center">Checking authentication...</p>;
     return (
-        <>
-            <main className="container">
-                <div className="row py-4">
-                    {
-                        images?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(image => (
-                            <div key={image._id} className="col-md-6">
-                                <ImageCard image={image} setRefresh={setRefresh} />
-                            </div>
-                        ))
-                    }
-                </div>
-            </main>
-        </>
+
+        <main className="w-full px-4 py-6">
+        <div
+            className="
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4 
+            gap-6 
+            max-w-7xl 
+            mx-auto
+            "
+        >
+            {images
+            ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((image) => (
+                <ImageCard key={image._id} image={image} setRefresh={setRefresh} />
+            ))}
+        </div>
+        </main>
+
     );
 }

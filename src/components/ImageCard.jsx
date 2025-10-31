@@ -2,7 +2,6 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useFetchPost } from "../hooks/useFetchPost";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 
 
 export function ImageCard({ image, refresh, setRefresh }) {
@@ -25,15 +24,26 @@ export function ImageCard({ image, refresh, setRefresh }) {
     }
 
     return (
-        <div className="card mb-4 p-2">
-            <div className="d-flex justify-content-end">
-                <button onClick={(e) => handleImageIsFavouriteToggle(e)} className="btn" type="button">
-                    {
-                        image?.isFavourite ? ( <FaHeart color="red"/> ) : ( <FaRegHeart /> )
-                    }
-                </button>
-            </div>
-            <img src={`${image?.imageUrl}`} alt={`${image?.imageName}`} className="img-fluid"/>
+
+        <div className="relative bg-gray-400 rounded-lg shadow-md hover:shadow-lg overflow-hidden transition-shadow duration-200">
+        <button
+            onClick={handleImageIsFavouriteToggle}
+            type="button"
+            className="absolute top-2 right-2 p-2 bg-white/80 rounded-full hover:bg-white transition"
+        >
+            {image?.isFavourite ? (
+            <FaHeart className="text-red-500" />
+            ) : (
+            <FaRegHeart className="text-gray-500 hover:text-red-400" />
+            )}
+        </button>
+
+        <img
+            src={image?.imageUrl}
+            alt={image?.imageName}
+            className="w-full h-64 object-cover"
+        />
         </div>
+
     );
 }

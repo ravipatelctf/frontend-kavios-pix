@@ -1,14 +1,14 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Header from "./components/Header";
-import Dashboard from "./pages/Albums";
-import AlbumDetails from "./pages/AlbumDetails";
-
 import { ToastContainer } from "react-toastify";
+
+import { Header } from "./components/header/Header";
+import AlbumDetails from "./pages/AlbumDetails";
 import ImageDetails from "./pages/ImageDetails";
 import { FavoriteImages } from "./pages/FavoriteImages";
 import { ImageManagement } from "./pages/ImageManagement";
 import Albums from "./pages/Albums";
+import LandingPage from "./pages/LandingPage";
 
 export default function App() {
   return (
@@ -16,15 +16,7 @@ export default function App() {
     <Router>
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="container text-center">
-              <h1>KaviosPix</h1>
-              <p>Welcome to KaviosPix.</p>
-            </div>
-          }
-        />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/albums/:albumId" element={<AlbumDetails />} />
         <Route path="/albums/:albumId/images/:imageId" element={<ImageDetails />}/>
