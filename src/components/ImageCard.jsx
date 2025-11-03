@@ -2,6 +2,7 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useFetchPost } from "../hooks/useFetchPost";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 
 export function ImageCard({ image, refresh, setRefresh }) {
@@ -37,12 +38,17 @@ export function ImageCard({ image, refresh, setRefresh }) {
             <FaRegHeart className="text-gray-500 hover:text-red-400" />
             )}
         </button>
-
-        <img
-            src={image?.imageUrl}
-            alt={image?.imageName}
-            className="w-full h-64 object-cover"
-        />
+        <Link
+            to={`/images/${image._id}`}
+            key={image._id}
+            className=""
+        >
+            <img
+                src={image?.imageUrl}
+                alt={image?.imageName}
+                className="w-full h-64 object-cover"
+            />
+        </Link>
         </div>
 
     );

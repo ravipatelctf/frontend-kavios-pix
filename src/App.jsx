@@ -19,7 +19,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/albums/:albumId" element={<AlbumDetails />} />
-        <Route path="/albums/:albumId/images/:imageId" element={<ImageDetails />}/>
+        <Route path="/images/:imageId" element={<ImageDetails />}/>
         <Route path="/images" element={<ImageManagement />} />
         <Route path="/images/favorites" element={<FavoriteImages />} />
       </Routes>

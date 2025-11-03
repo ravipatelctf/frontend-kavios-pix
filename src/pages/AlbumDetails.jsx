@@ -159,13 +159,7 @@ function ImageManagement({ albumId }) {
             data
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .map((image) => (
-                <Link
-                  to={`/albums/${albumId}/images/${image._id}`}
-                  key={image._id}
-                  className="block hover:scale-[1.02] transition-transform"
-                >
-                  <ImageCard image={image} setRefresh={setRefresh} />
-                </Link>
+                <ImageCard key={image._id} image={image} setRefresh={setRefresh}/>
               ))
           ) : (
             <p className="text-gray-500 text-center">Loading...</p>
@@ -175,3 +169,23 @@ function ImageManagement({ albumId }) {
     </main>
   );
 }
+
+{/* <section>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {data ? (
+      data
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map((image) => (
+          <Link
+            to={`/albums/${albumId}/images/${image._id}`}
+            key={image._id}
+            className="block hover:scale-[1.02] transition-transform"
+          >
+            <ImageCard image={image} setRefresh={setRefresh} />
+          </Link>
+        ))
+    ) : (
+      <p className="text-gray-500 text-center">Loading...</p>
+    )}
+  </div>
+</section> */}
