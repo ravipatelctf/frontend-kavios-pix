@@ -17,7 +17,7 @@ function AlbumCard({ album }) {
   );
 }
 
-function AlbumManagement() {
+function AlbumManagement({ email }) {
   const [refresh, setRefresh] = useState(0);
   const { data, fetchData } = useFetchGet(`${import.meta.env.VITE_SERVER_BASE_URL}/albums`);
 
@@ -28,7 +28,7 @@ function AlbumManagement() {
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <CreateAlbum refresh={refresh} setRefresh={setRefresh} />
+        <CreateAlbum refresh={refresh} setRefresh={setRefresh} email={email} />
       </div>
 
       {data && data.data ? (
@@ -46,11 +46,10 @@ function AlbumManagement() {
   );
 }
 
-function CreateAlbum({ setRefresh }) {
+function CreateAlbum({ setRefresh, email }) {
   const [album, setAlbum] = useState({
     name: "",
-    description: "",
-    ownerId: "68fb0dbf5cb400e253facc77",
+    description: ""
   });
   const [showModal, setShowModal] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -64,7 +63,7 @@ function CreateAlbum({ setRefresh }) {
     try {
       await createAlbum(album);
       setRefresh((pv) => pv + 1);
-      setAlbum({ name: "", description: "", ownerId: "68fb0dbf5cb400e253facc77" });
+      setAlbum({ name: "", description: ""});
       closeModal();
     } catch (error) {
       console.error("Failed to create album:", error);
@@ -191,7 +190,7 @@ export default function Albums() {
           <p className="text-gray-700 text-lg mb-4 font-medium">
             Your Email: <span className="text-indigo-600 font-semibold">{email || "User"}</span>
           </p>
-          <AlbumManagement />
+          <AlbumManagement email={email} />
         </>
       ) : (
         <p className="text-gray-400">Redirecting to login...</p>
