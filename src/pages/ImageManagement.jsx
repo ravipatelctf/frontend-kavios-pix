@@ -22,6 +22,15 @@ export function ImageManagement() {
     }, [refresh]);
 
     if (loading) return <p className="text-center">Checking authentication...</p>;
+
+    if (!images || images?.length == 0) {
+        return (
+            <main className="py-5">
+                <p className="text-center text-2xl text-gray-600">No Image found</p>
+            </main>
+        );
+    }
+
     return (
 
         <main className="w-full px-4 py-6">
